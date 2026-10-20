@@ -1,0 +1,6 @@
+{
+  "name": "triport-examples",
+  "description": "Clone-and-run blockchain RPC, WebSocket, Yellowstone gRPC and Wallet API examples in TypeScript, Python and Rust, using standard clients without a Triport SDK.",
+  "homepage": "https://triport.io/docs",
+  "topics": ["solana", "ethereum", "base", "polygon", "bnb-chain", "robinhood", "tron", "ton", "stellar", "yellowstone-grpc", "examples", "websocket"]
+}

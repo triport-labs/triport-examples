@@ -1,0 +1,45 @@
+name: Static checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  typescript:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: typescript
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: typescript/package-lock.json
+      - run: npm ci --ignore-scripts
+      - run: npm run check
+  python:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.9.4'
+      - run: uv sync --locked
+      - run: uv run --no-sync ruff check .
+      - run: uv run --no-sync python -c "import pathlib,subprocess,sys; subprocess.run([sys.executable,'-m','py_compile',*[str(p) for p in pathlib.Path('.').rglob('*.py') if '.venv' not in p.parts]],check=True)"
+  rust:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: rust
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo fmt --check
+      - run: cargo check --locked --all-targets
