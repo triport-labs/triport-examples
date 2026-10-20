@@ -89,4 +89,4 @@ still needs confirmation. Never commit your keypair.
 CI runs static checks only (`tsc --noEmit`, `ruff`, `py_compile`, `cargo check`);
 it never calls blockchain endpoints or needs API keys.
 
-[Website](https://triport.io) · [Docs](https://triport.io/docs) · [X](https://x.com/triport_io) · [Telegram](https://t.me/triport_dev) · [Email](mailto:sales@triport.io)
+[Website](https://triport.io) · [Docs](https://triport.io/docs) · [X](https://x.com/triport_io) · [Telegram](https://t.me/triport_sales) · [Email](mailto:sales@triport.io)
